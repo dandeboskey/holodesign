@@ -1,11 +1,10 @@
 import serial
 import time
-import numpy
 
+arduinotime = "Time in ms of arduino serial"
 arduino = serial.Serial(port='/dev/cu.usbserial-02655245', baudrate=115200, timeout=.1)
 
-def values(x):
-    while True:
+def values(x): 
         line = arduino.readline()
         decoded = line.decode("utf-8")
         if x == 0:
@@ -14,27 +13,35 @@ def values(x):
                 xorient = int(float(splitted[1]))
                 yorient = int(float(splitted[2]))
                 zorient = int(float(splitted[3]))
-                return[xorient, yorient, zorient]
+                return [xorient, yorient, zorient]
         elif x == 1:
             if 'A' in decoded:
                 splitted = decoded.split(',')
                 xacc = float(splitted[1])
                 yacc = float(splitted[2])
                 zacc = float(splitted[3])
-                return[xacc, yacc, zacc]
+                return [xacc, yacc, zacc]
         elif x == 2:
             if 'O' in decoded:
                 splitted = decoded.split(',')
                 xorient = int(float(splitted[1]))
                 yorient = int(float(splitted[2]))
                 zorient = int(float(splitted[3]))
-                return[xorient, yorient, zorient]
+                print([xorient, yorient, zorient])
             if 'A' in decoded:
                 splitted = decoded.split(',')
                 xacc = float(splitted[1])
                 yacc = float(splitted[2])
                 zacc = float(splitted[3])
-                return[xacc, yacc, zacc]
+                print([xacc, yacc, zacc])
 
-while True:
-    values(2)
+print(values(1))
+
+def calibration():
+    positionmat_i = [0,0,0]
+    positionmat_f = [0,0,0]
+"Calibration function"
+
+"Position matrix"
+
+"Tracking function"
